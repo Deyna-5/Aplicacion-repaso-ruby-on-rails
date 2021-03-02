@@ -1,0 +1,18 @@
+
+<%= render "new" %>
+
+<% if @posts.nil? %>
+       <div class="text-center my-5 py-5">
+              <h3>No hay publicaciones aún</h3>
+              <p>Sé el primero!</p>
+       </div>
+<% else %>
+       <% @posts.each do |f| %>
+              <div class=" card text-center my-5">
+                     <img src="<%= f.image_url %>" width="650" height="450" class="ml-3">
+                     <div class="card-body">
+                            <%= f.content %>
+                     </div>
+              </div>
+       <%end%>
+<%end%>
