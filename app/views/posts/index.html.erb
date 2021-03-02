@@ -1,18 +1,23 @@
 
 <%= render "new" %>
 
-<% if @posts.nil? %>
+<% if @posts.length < 1 %>
        <div class="text-center my-5 py-5">
               <h3>No hay publicaciones aún</h3>
               <p>Sé el primero!</p>
        </div>
 <% else %>
        <% @posts.each do |f| %>
-              <div class=" card text-center my-5">
-                     <img src="<%= f.image_url %>" width="650" height="450" class="ml-3">
+              <div class=" card text-center my-5 col-12">
+                     <div class="card-header text-right">
+                            <%= link_to '<h3 class="far fa-trash-alt text-danger"></h3>'.html_safe, posts_destroy_path(f.id), method: :delete, data: {confirm: "¿Deseas eliminar este post?"}%>
+                     </div>
+                     <img src="<%= f.image_url %>" width="650" height="450" class="col-12">
                      <div class="card-body">
                             <%= f.content %>
                      </div>
+                     <!--<div class="card-footer ">
+                     </div>-->
               </div>
        <%end%>
 <%end%>

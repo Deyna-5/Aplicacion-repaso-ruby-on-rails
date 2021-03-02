@@ -1,10 +1,10 @@
-<div class="card mt-5" >
+<div class="card mt-5 text-center bg-light" >
        <%= form_with(model: @post, local: true) do |f|  %>
-              <div class="my-3 text-lef ml-5 imagenfield">
-                     <%= f.text_field :image_url, placeholder: "Url de la imagen" %>
+              <div class="my-3">
+                     <%= f.text_field :image_url, placeholder: "Url de la imagen", size: "78" %>
               </div>
-              <div class="text-center">
-                     <%= f.text_area :content, size: "60x5", placeholder: "descripcion" %><br>
+              <div>
+                     <%= f.text_area :content, size: "80x5", placeholder: "descripcion" %><br>
                      <%= f.submit "Publicar" %>
               </div>
        <%end%>
