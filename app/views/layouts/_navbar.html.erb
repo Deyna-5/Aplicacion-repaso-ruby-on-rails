@@ -12,19 +12,15 @@
                             </li>
                             
                             <li class="nav-item dropdown">
-                                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bienvenido</a>
+                                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Bienvenido <%= current_user.name %>! </a>
                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                           <% if user_signed_in? %>
-                                                 <%= link_to "Cerrar sesion", destroy_user_session_path, method: :delete %>
-                                                 <%= link_to "Editar cuenta", edit_user_registration_path %>
+                                                 <a class="dropdown-item" href="/users/sign_out" data-method="delete">Cerrar sesion</a>
+                                                 <a class="dropdown-item" href="/users/edit">Editar cuenta</a>
                                           <%else%>
-                                                 <%= link_to "Iniciar sesion", new_user_session_path %>
-                                                 <%= link_to "Registrarme", new_user_registration_path %>
+                                                 <a class="dropdown-item" href="/users/sign_in">Iniciar sesion</a>
+                                                 <a class="dropdown-item" href="/users/sign_up">Registrarme</a>
                                           <%end%>
-                                          <!--<a class="dropdown-item" href="#">Action</a>
-                                          <a class="dropdown-item" href="#">Another action</a>
-                                          <div class="dropdown-divider"></div>
-                                                 <a class="dropdown-item" href="#">Something else here</a>-->
                                    </div>
                             </li>
                      </ul>
