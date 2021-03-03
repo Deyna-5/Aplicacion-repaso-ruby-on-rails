@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
        before_action :set_post, only: [:destroy]
+       before_action :authenticate_user!
 
        def index
               @posts = Post.all.order(created_at: :desc)
@@ -11,6 +12,7 @@ class PostsController < ApplicationController
 
        def create
               @post = Post.new(post_params)
+              @post.user_id = current_user.id
               if @post.save
                      redirect_to root_path, notice: "Post creado de forma éxitosa"
               else
@@ -19,10 +21,12 @@ class PostsController < ApplicationController
        end
 
        def destroy
-              if @post.destroy
-                     redirect_to root_path, notice: "Se elimino de forma éxitosa"
-              else
-                     redirect_to root_path, alert: "Ocurrió un error"
+              if @post.user_id == current_user.id
+                     if @post.destroy
+                            redirect_to root_path, notice: "Se elimino de forma éxitosa"
+                     else
+                            redirect_to root_path, alert: "Ocurrió un error"
+                     end
               end
        end
 

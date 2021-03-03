@@ -10,14 +10,17 @@
        <% @posts.each do |f| %>
               <div class=" card text-center my-5 col-12">
                      <div class="card-header text-right">
-                            <%= link_to '<h3 class="far fa-trash-alt text-danger"></h3>'.html_safe, posts_destroy_path(f.id), method: :delete, data: {confirm: "¿Deseas eliminar este post?"}%>
+                            <% if current_user == f.user %>
+                                   <%= link_to '<h3 class="far fa-trash-alt text-danger"></h3>'.html_safe, posts_destroy_path(f.id), method: :delete, data: {confirm: "¿Deseas eliminar este post?"}%>
+                            <%end%>
                      </div>
-                     <img src="<%= f.image_url %>" width="650" height="450" class="col-12">
+                     <img src="<%= f.image_url %>" class="col-12">
                      <div class="card-body">
                             <%= f.content %>
                      </div>
-                     <!--<div class="card-footer ">
-                     </div>-->
+                     <div class="card-footer text-left ">
+                            <p class="text-left d-inline">Creado por: <%= f.user.name %></p>
+                     </div>
               </div>
        <%end%>
 <%end%>
