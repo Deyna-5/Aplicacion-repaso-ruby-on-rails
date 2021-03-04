@@ -1,0 +1,9 @@
+<div class="card bg-white container mt-5 col-lg-3 col-md-12 cardfriends">
+       <h5 class="text-center my-2">Lista de amigos</h5>
+       <ul class="d-inline" >
+              <li> <%= current_user.name %> </li>
+              <% current_user.all_friends.each do |friend| %>
+                     <li><a href="/users/<%= friend.id %>"><%= friend.name %> </a></li>
+              <%end%>
+       </ul>
+</div>

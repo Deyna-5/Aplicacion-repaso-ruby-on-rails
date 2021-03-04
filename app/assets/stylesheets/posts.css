@@ -9,3 +9,10 @@ body{
        z-index: 100;
        top: 0px;
 }
+
+@media(min-width: 780px) and (max-width: 1536px){
+       .cardfriends{
+              position: relative;
+              left: -420px;
+       }
+}

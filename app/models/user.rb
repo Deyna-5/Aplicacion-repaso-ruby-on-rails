@@ -5,6 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_many :posts
+  has_many :friends
 
   validates :name, presence: true
+
+  def all_friends
+    User.where(id: self.friends.map{|f| f.friend_id})
+  end
 end

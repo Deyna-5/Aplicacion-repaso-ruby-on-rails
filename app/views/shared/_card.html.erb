@@ -1,0 +1,32 @@
+<% if @posts.length < 1 %>
+       <div class="text-center my-5 py-5">
+              <h3>No hay publicaciones aún</h3>
+              <p>Sé el primero!</p>
+       </div>
+<% else %>
+       <% @posts.each do |f| %>
+              <div class="row">
+                     <div class=" card text-center my-4 col-lg-6 col-md-12 offset-lg-3">
+                            <div class="card-header text-right">
+                                   <% if current_user.id != f.user.id %>
+                                          <% if current_user.friends.pluck(:friend_id).include?(f.user.id) %>
+                                                 <%= link_to '<h4 class="fas fa-users-slash"></h4>'.html_safe, friend_path(f.user.id), method: :delete %>
+                                          <% else %>
+                                                 <%= link_to '<h4 class="fas fa-users"></h4>'.html_safe, friends_path(:friend_id => f.user.id), method: :post %>
+                                          <% end %>
+                                   <%end%>
+                                   <% if current_user == f.user %>
+                                          <%= link_to '<h4 class="far fa-trash-alt text-danger"></h4>'.html_safe, posts_destroy_path(f.id), method: :delete, data: {confirm: "¿Deseas eliminar este post?"}%>
+                                   <%end%> 
+                            </div>
+                            <img src="<%= f.image_url %>" class="col-12">
+                            <div class="card-body">
+                                   <%= f.content %>
+                            </div>
+                            <div class="card-footer text-left ">
+                                   <p class="text-left d-inline">Creado por: <%= f.user.name %></p>
+                            </div>
+                     </div>
+              </div>
+       <%end%>
+<%end%>

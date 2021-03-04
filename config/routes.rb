@@ -5,9 +5,12 @@ Rails.application.routes.draw do
   }
 
   resources :posts, except: [:destroy]
+  delete "posts/:id", to: "posts#destroy", as: "posts_destroy"
+  get "/explore", to: "posts#explore"
+  get "users/:id", to: "posts#friendsposts"
+
+  resources :friends, only: [:create, :destroy]
 
   root "posts#index"
-  delete "posts/:id", to: "posts#destroy", as: "posts_destroy"
-
-
+  
 end

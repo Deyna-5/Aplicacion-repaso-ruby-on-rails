@@ -1,0 +1,13 @@
+<div class="bg-white mt-5 text-center">
+       <%=  form_tag(root_path, method: :get) do%>
+              <div class="form-group d-inline">
+                     <%= label_tag "Fecha inicio" %>
+                     <%= date_field_tag :date1 %>
+              </div>
+              <div class="form-group d-inline">
+                     <%= label_tag "Fecha limite" %>
+                     <%= date_field_tag :date2 %>
+              </div>
+              <%= submit_tag "Buscar" %>
+       <%end%>
+</div>

@@ -1,27 +1,14 @@
-<h1> ... </h1>
+<!-- Formulario -->
+       <%= render "shared/new" %>
 
-<%= render "new" %>
+<!-- BUSCADOR -->
+       <%= render "shared/search"%>
 
-<% if @posts.length < 1 %>
-       <div class="text-center my-5 py-5">
-              <h3>No hay publicaciones aún</h3>
-              <p>Sé el primero!</p>
-       </div>
-<% else %>
-       <% @posts.each do |f| %>
-              <div class=" card text-center my-5 col-12">
-                     <div class="card-header text-right">
-                            <% if current_user == f.user %>
-                                   <%= link_to '<h3 class="far fa-trash-alt text-danger"></h3>'.html_safe, posts_destroy_path(f.id), method: :delete, data: {confirm: "¿Deseas eliminar este post?"}%>
-                            <%end%>
-                     </div>
-                     <img src="<%= f.image_url %>" class="col-12">
-                     <div class="card-body">
-                            <%= f.content %>
-                     </div>
-                     <div class="card-footer text-left ">
-                            <p class="text-left d-inline">Creado por: <%= f.user.name %></p>
-                     </div>
-              </div>
-       <%end%>
-<%end%>
+<!-- LISTADO DE AMIGOS -->
+       <%= render "shared/friendslist"%>
+
+<!--MOSTRAR LOS POSTS -->
+       <%= render "shared/card" %>
+
+<!-- Link del Kaminari -->
+       <%= render "shared/kaminari" %>
