@@ -16,3 +16,17 @@ body{
               left: -420px;
        }
 }
+
+.linkfriend{
+       color: black;
+       text-decoration: none;
+}
+.linkfriend:hover{
+       color: lightseagreen;
+       font-weight: bold;
+       font-size: 18px;
+}
+.linkfriend:focus{
+       color: lightseagreen;
+       font-weight: bold;
+}
